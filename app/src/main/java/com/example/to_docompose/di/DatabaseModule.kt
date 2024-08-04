@@ -30,4 +30,3 @@ object DatabaseModule {
     @Provides
     fun provideDao(database: ToDoDatabase) = database.toDoDao()
 }
-
