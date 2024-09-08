@@ -3,23 +3,35 @@ package com.example.to_docompose
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.navigation.NavHostController
+import androidx.compose.ui.Modifier
 import androidx.navigation.compose.rememberNavController
-import com.example.to_docompose.navigation.SetupNavigation
+import com.example.to_docompose.navigation.AppNavHost
+import com.example.to_docompose.ui.presentation.screens.taskslist.ListScreen
 import com.example.to_docompose.ui.theme.ToDoComposeTheme
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
-    private lateinit var navController: NavHostController
+    @Inject
+    lateinit var mainNavHost: AppNavHost
+
+    private val onEmptyBackstackBack = {
+        onBackPressedDispatcher.onBackPressed()
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             ToDoComposeTheme {
-                navController = rememberNavController()
-                SetupNavigation(navHostController = navController)
+                val navController = rememberNavController()
+                mainNavHost(
+                    modifier = Modifier,
+                    navController = navController,
+                    onEmptyBackstackBack = onEmptyBackstackBack
+                )
+                ListScreen()
             }
         }
     }
