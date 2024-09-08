@@ -18,7 +18,10 @@ fun ListFab(
     modifier: Modifier = Modifier,
     props: ListFabProps
 ) {
-    FloatingActionButton(onClick = props.onClick) {
+    FloatingActionButton(
+        onClick = props.onClick,
+        modifier = modifier
+    ) {
         Icon(
             imageVector = Icons.Filled.Add,
             contentDescription = stringResource(R.string.add_task_floating_button),
