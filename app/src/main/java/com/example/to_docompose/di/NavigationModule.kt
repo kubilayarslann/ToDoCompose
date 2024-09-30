@@ -27,5 +27,4 @@ interface NavigationModule {
     @Binds
     fun bindScreensNavigation(screensNavigatorImpl: ScreensNavigatorImpl): ScreensNavigator
 
-
 }

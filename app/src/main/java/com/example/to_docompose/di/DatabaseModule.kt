@@ -1,9 +1,11 @@
 package com.example.to_docompose.di
 
 import android.content.Context
-import androidx.room.Room
-import com.example.to_docompose.data.ToDoDatabase
-import com.example.to_docompose.utils.Constants.DATABASE_NAME
+import com.example.to_docompose.database.ToDoTasksDAO
+import com.example.to_docompose.database.ToDoDatabase
+import com.example.to_docompose.database.dao.TransactionDao
+import com.example.to_docompose.database.dao.TransactionDaoImpl
+import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -13,20 +15,21 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-object DatabaseModule {
+interface DatabaseModule {
 
-    @Singleton
-    @Provides
-    fun provideDatabase(
-        @ApplicationContext context: Context
-    ) =
-        Room.databaseBuilder(
-            context = context,
-            klass = ToDoDatabase::class.java,
-            name = DATABASE_NAME
-        ).build()
+    companion object {
+        @Provides
+        fun provideToDoDao(appDatabase: ToDoDatabase): ToDoTasksDAO {
+            return appDatabase.toDoDao()
+        }
 
-    @Singleton
-    @Provides
-    fun provideDao(database: ToDoDatabase) = database.toDoDao()
+        @Provides
+        @Singleton
+        fun provideAppDatabase(@ApplicationContext appContext: Context): ToDoDatabase {
+            return ToDoDatabase.create(appContext)
+        }
+    }
+
+    @Binds
+    fun bindTransactionDao(impl: TransactionDaoImpl): TransactionDao
 }
