@@ -7,6 +7,7 @@ import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.example.to_docompose.ui.presentation.appbars.DefaultTopAppBar
 import com.example.to_docompose.ui.presentation.buttons.ListFab
 import com.example.to_docompose.ui.presentation.buttons.ListFabProps
 import com.example.to_docompose.ui.presentation.preview.DayNightPreviews
@@ -30,11 +31,14 @@ private fun ListScreenUiContent(
     props: ListScreenProps
 ) {
     Scaffold(
+        topBar = {
+            DefaultTopAppBar(
+                props = props.defaultTopAppBarProps
+            )
+        },
         content = {},
         floatingActionButton = {
-            ListFab(props = ListFabProps {
-
-            })
+            ListFab(props = props.fabProps)
         }
     )
 }
