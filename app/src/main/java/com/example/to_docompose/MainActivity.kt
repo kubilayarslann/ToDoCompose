@@ -4,8 +4,10 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.ui.Modifier
+import androidx.core.view.WindowCompat
 import androidx.navigation.compose.rememberNavController
 import com.example.to_docompose.navigation.AppNavHost
+import com.example.to_docompose.ui.presentation.effect.TransparentStatusBarEffect
 import com.example.to_docompose.ui.presentation.screens.taskslist.ListScreen
 import com.example.to_docompose.ui.theme.ToDoComposeTheme
 import dagger.hilt.android.AndroidEntryPoint
@@ -23,7 +25,10 @@ class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        WindowCompat.setDecorFitsSystemWindows(window, false)
+
         setContent {
+            TransparentStatusBarEffect()
             ToDoComposeTheme {
                 val navController = rememberNavController()
                 mainNavHost(

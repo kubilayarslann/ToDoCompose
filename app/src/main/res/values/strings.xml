@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">To-Do Compose</string>
     <string name="add_task_floating_button">Add Task Floating Button</string>
+    <string name="tasks">Tasks</string>
 </resources>
