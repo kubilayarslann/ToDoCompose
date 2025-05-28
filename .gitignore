@@ -1,16 +1,66 @@
-*.iml
-.gradle
-/local.properties
-/.idea/caches
-/.idea/libraries
-/.idea/modules.xml
+# ===== Android Studio / IntelliJ IDEA =====
+# Proje ayarları – bunların çoğu kullanıcıya özgü, commit etmeye gerek yok
+/.idea/*
+# Ancak paylaşmak isteyebileceğiniz kod stili, run configurations vs.
+/!.idea/gradle.xml
+/.idea/**/*.iml
+# Workspace, local history, cache, plugin ayarları
 /.idea/workspace.xml
-/.idea/navEditor.xml
-/.idea/assetWizardSettings.xml
+/.idea/tasks.xml
+/.idea/dictionaries/
+/.idea/sshConfigs.xml
+.idea/jsLibraryMappings.xml
+.idea/vcs.xml
+.idea/modules.xml
+
+# Modül bazlı IntelliJ dosyaları
+*.iml
+*.iws
+
+# ===== Gradle & Build çıktıları =====
+/.gradle/
+/build/
+/**/build/
+
+# Gradle wrapper (isterseniz commit edebilirsiniz; versiyon kontrolü için faydalı olur)
+/gradle/wrapper/gradle-wrapper.jar
+
+# Android derleme çıktıları, artefaktlar
+*.apk
+*.ap_
+*.aab
+mapping.txt
+outputs/
+
+# ===== Local SDK & Ortam =====
+# SDK yolu ve local.properties kesinlikle ignore edilmeli
+/local.properties
+
+# Ortam değişkenleri dosyaları (CI/CD, API anahtarları vb.)
+.env
+.env.*
+
+# ===== Captures & Log =====
+captures/
+*.log
+
+# ===== OS Üzerinden Oluşan Gereksiz Dosyalar =====
+# macOS
 .DS_Store
-/build
-/captures
-.externalNativeBuild
-.cxx
-local.properties
-.idea
+.AppleDouble
+.LSOverride
+# Thumbnails
+._*
+# Windows
+Thumbs.db
+ehthumbs.db
+# Linux (bazen)
+/.directory
+
+# ===== Diğer =====
+# Kotlin kapt cache
+**/kapt/
+# Jetifier
+.jetifier_cache/
+# Kotlin DSL configure cache
+.gradle-kotlin-dsl/

@@ -8,6 +8,6 @@ class AddTaskUseCase @Inject constructor(
     private val transactionDao: TransactionDao
 ) {
     suspend operator fun invoke(toDoTask: ToDoTask) {
-         transactionDao.addTask(toDoTask = toDoTask)
+        transactionDao.addTask(toDoTask = toDoTask)
     }
 }
