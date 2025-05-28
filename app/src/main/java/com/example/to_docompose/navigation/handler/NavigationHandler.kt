@@ -26,7 +26,7 @@ fun NavigationHandler(
 
     LaunchedEffect(key1 = navigationManager, key2 = navController) {
         navigationManager.navigationCommandFlow.collect { command ->
-            Log.d ("NavigationHandler", "NavigationCommand: $command")
+            Log.d("NavigationHandler", "NavigationCommand: $command")
             when (command) {
                 is NavigationCommand.NavigateTo -> {
                     command.directions.let {
@@ -52,6 +52,8 @@ fun NavigationHandler(
                 is NavigationCommand.Recreate -> {
                     context.getActivity()?.recreate()
                 }
+
+                else -> {}
             }
         }
     }
@@ -63,5 +65,5 @@ private fun PrintBackStack(backstack: List<NavBackStackEntry>) {
     val backstackString = backstack.joinToString(" -> ") {
         it.destination.route ?: it.destination.displayName
     }
-    Log.d ("NavigationHandler", "BACKSTACK: [$backstackString]")
+    Log.d("NavigationHandler", "BACKSTACK: [$backstackString]")
 }

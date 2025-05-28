@@ -19,13 +19,12 @@ class ListScreenViewModel @Inject constructor(
     private val screensNavigator: ScreensNavigator
 ) : ViewModel() {
 
-
     private val _state = MutableStateFlow(ListState())
     val state = _state.asStateFlow()
 
     init {
         viewModelScope.launch(Dispatchers.IO) {
-            //This one also must be state flow members.
+            // This one also must be state flow members.
             _state.update {
                 it.copy(
                     tasksList = getAllTasksUseCase()
